@@ -1,0 +1,38 @@
+import random
+
+def Reemplazar_letra(letra,world,respuesta):
+    lista= list(respuesta)
+    lista[i] = letra
+    respuesta= "".join(lista)
+    return respuesta
+    
+file=open('Palabras.txt', encoding="utf8")
+lista=list(file)
+world=random.choice(lista).strip()
+#print(world)
+longitud=len(world)
+respuesta='*' * longitud
+intentos=longitud
+chances=0
+
+print("Bienvenido a 'Adivina la Palabra'")
+print("La longitud de la palabra es: ",longitud)
+print("Tienes", intentos, "intentos")
+print(respuesta)
+
+
+while world!=respuesta and intentos>chances:
+    chances=chances+1
+    letra=input("Ingresar letra: ")
+    for i in range(len(world)):
+        if world[i]==letra:
+            print("La letra esta en la posicion", i+1)
+            respuesta=Reemplazar_letra(letra,world,respuesta)
+            print(respuesta)
+
+if world==respuesta:
+    print("Ganaste! La palabra era: ",respuesta)
+else:
+    print("Perdiste")
+    print("La palabra correcta era: ",world)
+       
